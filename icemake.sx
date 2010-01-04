@@ -1,0 +1,28 @@
+;;
+; vim:ft=lisp
+;;
+
+(library "katal" libcurie
+  (name "Katal")
+  (description "Source code documentation and other related tools -- library")
+  (version "1")
+  (url "http://kyuba.org/")
+
+  (code "c-preprocess" "c-parse")
+
+  (headers
+        "c"))
+
+(programme "kat2man" libcurie
+  (name "katdoc")
+  (description "Convert source code to unix man pages")
+  (version "1")
+  (url "http://kyuba.org/")
+
+  (libraries "katal")
+
+  (code "kat2man")
+
+  (documentation
+        "kat2man"))
+

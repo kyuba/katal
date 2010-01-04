@@ -1,0 +1,41 @@
+###- QUICK AND DIRTY: COMPILATION AND INSTALLATION -############################
+  You'll need curie-11 including icemake...
+
+    $ icemake -dif /
+
+
+################################################################################
+
+
+NOTE:
+  Please take note of the programme licence (the COPYING file), as well as the
+  credits (the CREDITS file).
+
+
+###- DETAILS -##################################################################
+
+Compilation:
+  Make sure you have libcurie-11 installed, then:
+
+    $ icemake
+
+  A number of compilation options are available if you run into issues. To see
+  them, use:
+
+    $ icemake --help
+
+Installation:
+  use this command to install regularly (for example into /, in the example):
+
+    $ icemake -dif /
+
+  NOTE that this will include some header files which you may not want to keep,
+  as well as shared and static libraries which may not be necessary. Also you
+  may wish to move the docs from /share to /usr/share. Or install everything in
+  /usr instead of /.
+
+  If you're on gentoo, the ebuilds on the jyujin overlay will do this for you,
+  so just use those instead of installing things manually.
+
+CONTACT:
+  Best bet is IRC: freenode #kyuba
