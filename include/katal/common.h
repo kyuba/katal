@@ -68,6 +68,7 @@ enum katal_token_type
     ktt_pipe,
     ktt_circumflex,
     ktt_tilde,
+    ktt_percent,
 
     ktt_opening_parenthesis, /* () */
     ktt_closing_parenthesis,
@@ -133,12 +134,14 @@ enum katal_token_type
     ktt_arithmetic_subtract,
     ktt_arithmetic_divide,
     ktt_arithmetic_multiply,
+    ktt_arithmetic_modulo,
     ktt_shift_left,
     ktt_shift_right,
     ktt_arithmetic_add_and_assign,
     ktt_arithmetic_subtract_and_assign,
     ktt_arithmetic_divide_and_assign,
     ktt_arithmetic_multiply_and_assign,
+    ktt_arithmetic_modulo_and_assign,
     ktt_shift_left_and_assign,
     ktt_shift_right_and_assign,
     ktt_lesser_than,
@@ -167,6 +170,8 @@ enum katal_token_type
     ktt_pointer_to,
     ktt_reference_of,
     ktt_dereference_of,
+    ktt_increment,
+    ktt_decrement,
 
     /* purely logical tokens */
     ktt_declaration,
