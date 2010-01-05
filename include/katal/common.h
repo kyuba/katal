@@ -82,14 +82,40 @@ enum katal_token_type
     ktt_void,
     ktt_struct,
     ktt_union,
+    ktt_enum,
+    ktt_typedef,
     ktt_unsigned,
     ktt_signed,
+    ktt_short,
     ktt_long,
     ktt_char,
     ktt_int,
     ktt_double,
     ktt_float,
     ktt_return,
+    ktt_const,
+    ktt_volatile,
+    ktt_static,
+    ktt_extern,
+    ktt_auto,
+    ktt_register,
+    ktt_do,
+    ktt_while,
+    ktt_for,
+    ktt_continue,
+    ktt_break,
+    ktt_if,
+    ktt_else,
+    ktt_switch,
+    ktt_case,
+    ktt_default,
+    ktt_goto,
+    ktt_sizeof,
+
+    ktt_inline,
+    ktt_complex,
+
+    ktt_typeof,
 
     /* (mostly) logical tokens */
     ktt_comment,
@@ -149,7 +175,8 @@ enum katal_token_type
     ktt_variable,
     ktt_literal,
     ktt_function_prototype,
-    ktt_typecast
+    ktt_typecast,
+    ktt_label
 };
 
 union katal_token_payload
