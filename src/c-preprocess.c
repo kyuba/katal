@@ -26,6 +26,54 @@
  * THE SOFTWARE.
 */
 
+#include <curie/memory.h>
 #include <katal/c.h>
 
+struct ppdata
+{
+    unsigned int options;
+    struct io *out;
+    const char **include;
+    const char *base;
+    const char **defines;
+    void (*on_end_of_input)(void *);
+    void *aux;
+};
+
+static void on_cpp_read (struct io *in, void *aux)
+{
+    struct ppdata *d = (struct ppdata *)aux;
+}
+
+static void on_cpp_close (struct io *in, void *aux)
+{
+    struct ppdata *d = (struct ppdata *)aux;
+
+    if (d->on_end_of_input != (void *)0)
+    {
+        d->on_end_of_input (d->aux);
+    }
+
+    free_pool_mem (aux);
+}
+
+enum katal_return_value katal_c_preprocess
+    (unsigned int options, struct io *in, struct io *out,
+     const char **include, const char *base, const char **defines,
+     void (*on_end_of_input)(void *),
+     void *aux)
+{
+    struct memory_pool pool = MEMORY_POOL_INITIALISER (sizeof (struct ppdata));
+    struct ppdata *d = get_pool_mem (&pool);
+
+    d->options         = options;
+    d->out             = out;
+    d->include         = include;
+    d->base            = base;
+    d->defines         = defines;
+    d->on_end_of_input = on_end_of_input;
+    d->aux             = aux;
+
+    multiplex_add_io (in, on_cpp_read, on_cpp_close, (void *)d);
+}
 

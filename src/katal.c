@@ -26,23 +26,22 @@
  * THE SOFTWARE.
 */
 
-#ifndef LIBKATAL_C_H
-#define LIBKATAL_C_H
-
-#include <curie/io.h>
+#include <curie/multiplex.h>
 #include <katal/common.h>
 
-enum katal_return_value katal_c_preprocess
-    (unsigned int options, struct io *in, struct io *out,
-     const char **include, const char *base, const char **defines,
-     void (*on_end_of_input)(void *),
-     void *aux);
+const char *katal_include_directories[] =
+    { "/include", "/usr/include", (const char *)0 };
 
-struct katal_token *katal_c_get_token
-    (unsigned int options, struct io *in);
+void katal_initialise ( void )
+{
+    static char initialised = (char)0;
 
-enum katal_return_value katal_c_parse
-    (unsigned int options, struct io *in, struct katal_token **out);
+    if (initialised == (char)0)
+    {
+        multiplex_io();
+        multiplex_sexpr();
 
-#endif
+        initialised = (char)1;
+    }
+}
 

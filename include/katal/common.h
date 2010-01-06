@@ -29,6 +29,8 @@
 #ifndef LIBKATAL_COMMON_H
 #define LIBKATAL_COMMON_H
 
+extern const char *katal_include_directories[];
+
 #define KATAL_PREPROCESS_STRIP_COMMENTS   (1 << 0)
 #define KATAL_PREPROCESS_STRIP_WHITESPACE (1 << 1)
 
@@ -208,6 +210,8 @@ struct katal_token_with_next
     union katal_token_payload payload[];
 };
 
+void katal_initialise ( void );
+
 struct katal_token *katal_token_immutable
     (enum katal_token_type type, unsigned long long flags,
      struct katal_token *next,
@@ -215,7 +219,7 @@ struct katal_token *katal_token_immutable
      union katal_token_payload *secundus,
      union katal_token_payload *tertius);
 
-void katal_token_free_all (void);
+void katal_token_free_all ( void );
 
 int katal_token_equalp (struct katal_token *a, struct katal_token *b);
 
