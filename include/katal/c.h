@@ -32,11 +32,15 @@
 #include <curie/io.h>
 #include <katal/common.h>
 
-enum katal_return_value katal_c_preprocess
+void katal_c_preprocess
     (unsigned int options, struct io *in, struct io *out,
      const char **include, const char *base, const char **defines,
-     void (*on_end_of_input)(void *),
-     void *aux);
+     void (*on_end_of_input)(void *), void *aux);
+
+void katal_c_preprocess_file
+    (unsigned int options, const char *file, struct io *out,
+     const char **include, const char **defines,
+     void (*on_end_of_input)(void *), void *aux);
 
 struct katal_token *katal_c_get_token
     (unsigned int options, struct io *in);

@@ -11,7 +11,10 @@
   (code "token" "c-preprocess" "c-parse" "katal")
 
   (headers
-        "c"))
+        "c")
+  
+  (test-cases
+        "cpp-include"))
 
 (programme "kat2man" libcurie
   (name "katdoc")

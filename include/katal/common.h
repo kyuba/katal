@@ -210,7 +210,7 @@ struct katal_token_with_next
     union katal_token_payload payload[];
 };
 
-void katal_initialise ( void );
+void initialise_katal ( void );
 
 struct katal_token *katal_token_immutable
     (enum katal_token_type type, unsigned long long flags,

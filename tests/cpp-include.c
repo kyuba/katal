@@ -26,22 +26,22 @@
  * THE SOFTWARE.
 */
 
+#include <curie/main.h>
 #include <curie/multiplex.h>
-#include <katal/common.h>
+#include <katal/c.h>
 
-const char *katal_include_directories[] =
-    { "/include", "/usr/include", (const char *)0 };
-
-void initialise_katal ( void )
+int cmain ()
 {
-    static char initialised = (char)0;
+    struct io *out = io_open_write ("test-case-output-cpp-inclusion-1.c");
 
-    if (initialised == (char)0)
-    {
-        multiplex_io();
-        multiplex_sexpr();
+    initialise_katal ();
 
-        initialised = (char)1;
-    }
+    katal_c_preprocess_file
+        (0, "tests/data/inclusion-test-1.c", out, (const char **)0,
+         (const char **)0, cexit, (void *)0);
+
+    while (multiplex () != mx_nothing_to_do);
+
+    return 1;
 }
 

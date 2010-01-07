@@ -29,6 +29,14 @@
 #include <curie/memory.h>
 #include <katal/c.h>
 
+#define KATAL_CPP_INCLUDING (1 << 31)
+
+struct macro_data
+{
+    const char **parameters;
+    const char *replacement;
+};
+
 struct ppdata
 {
     unsigned int options;
@@ -57,7 +65,7 @@ static void on_cpp_close (struct io *in, void *aux)
     free_pool_mem (aux);
 }
 
-enum katal_return_value katal_c_preprocess
+void katal_c_preprocess
     (unsigned int options, struct io *in, struct io *out,
      const char **include, const char *base, const char **defines,
      void (*on_end_of_input)(void *),
