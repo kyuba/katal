@@ -186,6 +186,11 @@ enum katal_token_type
     ktt_label
 };
 
+union katal_token_payload;
+
+struct katal_token;
+struct katal_token_with_next;
+
 union katal_token_payload
 {
     unsigned long long  integer;
@@ -213,15 +218,13 @@ struct katal_token_with_next
 void initialise_katal ( void );
 
 struct katal_token *katal_token_immutable
-    (enum katal_token_type type, unsigned long long flags,
+    (enum katal_token_type type, unsigned long flags,
      struct katal_token *next,
      union katal_token_payload *primus,
      union katal_token_payload *secundus,
      union katal_token_payload *tertius);
 
 void katal_token_free_all ( void );
-
-int katal_token_equalp (struct katal_token *a, struct katal_token *b);
 
 #endif
 
