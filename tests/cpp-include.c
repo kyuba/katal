@@ -32,7 +32,7 @@
 
 int cmain ()
 {
-    struct io *out = io_open_write ("test-case-output-cpp-inclusion-1.c");
+    struct io *out = io_open_write ("build/test-case-output-cpp-inclusion-1.c");
 
     initialise_katal ();
 

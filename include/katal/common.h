@@ -71,6 +71,7 @@ enum katal_token_type
     ktt_circumflex,
     ktt_tilde,
     ktt_percent,
+    ktt_right_arrow,
 
     ktt_opening_parenthesis, /* () */
     ktt_closing_parenthesis,
