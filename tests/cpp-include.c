@@ -30,6 +30,14 @@
 #include <curie/multiplex.h>
 #include <katal/c.h>
 
+static void on_end_of_input(void * aux)
+{
+}
+
+static void on_notice(enum katal_notice type, const char *string, void *aux)
+{
+}
+
 int cmain ()
 {
     struct io *out = io_open_write ("build/test-case-output-cpp-inclusion-1.c");
@@ -38,10 +46,10 @@ int cmain ()
 
     katal_c_preprocess_file
         (0, "tests/data/inclusion-test-1.c", out, (const char **)0,
-         (const char **)0, cexit, (void *)0);
+         (const char **)0, on_end_of_input, on_notice, (void *)0);
 
     while (multiplex () != mx_nothing_to_do);
 
-    return 1;
+    return 0;
 }
 

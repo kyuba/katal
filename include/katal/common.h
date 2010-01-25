@@ -41,6 +41,13 @@ enum katal_return_value
     krv_incomplete
 };
 
+enum katal_notice
+{
+    kn_invalid_nesting,
+
+    kn_custom
+};
+
 #define KATAL_TOKEN_FLAG_HAVE_NEXT        (1 << 31)
 #define KATAL_TOKEN_FLAG_HAVE_PAYLOAD_1   (1 << 30)
 #define KATAL_TOKEN_FLAG_HAVE_PAYLOAD_2   (1 << 29)
