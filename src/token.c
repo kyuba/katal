@@ -77,7 +77,7 @@ struct katal_token *katal_token_immutable
               aalloc (size = (sizeof (struct katal_token) +
                              num_tokens * sizeof (union katal_token_payload)));
 
-        payloadbase = (unsigned int *)(rv->payload);
+        payloadbase = (unsigned int *)(rvt->payload);
 
         rvt->flags |= KATAL_TOKEN_FLAG_HAVE_NEXT;
         rvt->next   = next;
@@ -109,7 +109,7 @@ struct katal_token *katal_token_immutable
 
     hash = hash_murmur2_pt ((const void *)rv, size, 0);
 
-    node = tree_find_node (&token_tree, hash);
+    node = tree_get_node (&token_tree, hash);
 
     if (node != (struct tree_node *)0)
     {

@@ -8,6 +8,8 @@
   (version "1")
   (url "http://kyuba.org/")
 
+  (libraries "sievert")
+
   (code "token" "c-preprocess" "c-parse" "katal")
 
   (headers
@@ -22,7 +24,7 @@
   (version "1")
   (url "http://kyuba.org/")
 
-  (libraries "katal")
+  (libraries "katal" "sievert")
 
   (code "kat2man")
 

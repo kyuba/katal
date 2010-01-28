@@ -27,9 +27,9 @@
 */
 
 #include <curie/memory.h>
-#include <curie/immutable.h>
 #include <curie/multiplex.h>
 #include <curie/filesystem.h>
+#include <sievert/immutable.h>
 #include <katal/c.h>
 
 define_string (str_slash, "/");
@@ -78,6 +78,7 @@ struct ppdata
     const char **defines;
     struct macro_data **defines_data;
     unsigned int tmp;
+    const char *tstring;
     unsigned int depth;
     void (*on_end_of_input)(void *);
     void (*on_notice)(enum katal_notice, const char *, void *);
@@ -163,6 +164,7 @@ static void on_cpp_read (struct io *in, void *aux)
                 }
                 else if (opt & KATAL_CPP_IN_INCLUDE)
                 {
+                    /* handle #include */
                     if (tmp & KATAL_CPP_INCLUDE_IN_STRING)
                     {
                         switch (b[i])
@@ -266,6 +268,7 @@ static void on_cpp_read (struct io *in, void *aux)
                 }
                 else if (opt & KATAL_CPP_IN_DEFINE)
                 {
+                    /* handle #define */
                     /* stub */
                 }
                 else if (opt & KATAL_CPP_IN_IF)
@@ -356,6 +359,8 @@ static void on_cpp_read (struct io *in, void *aux)
                             {
                                 opt ^= KATAL_CPP_PROBABLY_DEFINE
                                      | KATAL_CPP_IN_DEFINE;
+                                tmp = 0;
+                                d->tstring = (const char *)0;
                             }
                             else
                             {
